@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cd /home/ec2-user/go-posgre-restapi
+cd /home/ec2-user/go-posgre-restapi > /dev/null 2>&1
 
 docker-compose down > /dev/null 2>&1
 
