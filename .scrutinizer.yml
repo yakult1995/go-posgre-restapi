@@ -14,7 +14,7 @@ build:
           - go-scrutinizer-run
           - govet-run
           - golint-run
-          - command: tree /home/scrutinizer/gopath/src/github.com/yakult1995/go-posgre-restapi/
+          - command: ls -la /home/scrutinizer/gopath/src/github.com/yakult1995/go-posgre-restapi/
     tests:
       environment:
         go:
@@ -23,10 +23,10 @@ build:
       tests:
         override:
           - command: go test -v /go/src/github.com/yakult1995/go-posgre-restapi
-    coverage:
-      tests:
-        override:
-          - command: go test -coverprofile=cover.out
-            coverage:
-              file: 'cover.out'
-              format: 'go-cc'
+#    coverage:
+#      tests:
+#        override:
+#          - command: go test -coverprofile=cover.out
+#            coverage:
+#              file: 'cover.out'
+#              format: 'go-cc'
