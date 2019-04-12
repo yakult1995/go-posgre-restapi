@@ -37,8 +37,8 @@ build:
           version: go1.9.2
       tests:
         override:
-          - govet-run
-          - command: go test -coverprofile=cover.out -v $(go list ./... | grep -v vendor)
+          - command: go get -u github.com/haya14busa/goverage
+          - command: goverage -coverprofile=coverage.out -v $(go list ./... | grep -v vendor)
             coverage:
-              file: 'cover.out'
+              file: 'coverage.out'
               format: 'go-cc'
