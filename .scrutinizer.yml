@@ -14,7 +14,7 @@ build:
           - go-scrutinizer-run
           - govet-run
           - golint-run
-          - command: ls -la github.com/yakult1995/go-posgre-restapi/app/
+          - command: tree /home/scrutinizer/gopath/src/github.com/yakult1995/go-posgre-restapi/
     tests:
       environment:
         go:
