@@ -1,0 +1,3 @@
+app/main
+docker/posgre/posgre_data/*
+.env

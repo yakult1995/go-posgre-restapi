@@ -1,0 +1,14 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ec2-user/go-posgre-restapi
+    overwrite: true
+
+hooks:
+  ApplicationStop:
+    - location: scripts/before_install.sh
+      runas: ec2-user
+  AfterInstall:
+    - location: scripts/after_install.sh
+      runas: ec2-user
