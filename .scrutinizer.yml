@@ -18,9 +18,9 @@ build:
       environment:
         go:
           version: go1.9.2
+          go_import_path: github.com/yakult1995/go-posgre-restapi/app
       tests:
         override:
-          - command: go build -o app/main github.com/yakult1995/go-posgre-restapi/...
           - command: go test -v /go/src/github.com/yakult1995/go-posgre-restapi
     coverage:
       tests:
