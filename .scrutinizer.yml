@@ -1,0 +1,44 @@
+checks:
+  go: true
+build:
+  nodes:
+    analysis:
+      project_setup:
+        override:
+          - 'true'
+      environment:
+        go:
+          version: go1.9.2
+      tests:
+        override:
+          - go-scrutinizer-run
+          - govet-run
+          - golint-run
+    tests:
+      project_setup:
+        before:
+          - "cd app"
+        override:
+          - 'true'
+      environment:
+        go:
+          version: go1.9.2
+      tests:
+        override:
+          - command: go test -v $(go list ./... | grep -v vendor)
+    coverage:
+      project_setup:
+        before:
+          - "cd app"
+        override:
+          - 'true'
+      environment:
+        go:
+          version: go1.9.2
+      tests:
+        override:
+          - command: cd ../
+          - command: go test -coverprofile=coverage.out -v $(go list ./... | grep -v vendor)
+            coverage:
+              file: 'coverage.out'
+              format: 'go-cc'

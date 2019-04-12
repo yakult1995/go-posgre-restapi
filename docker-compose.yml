@@ -1,0 +1,41 @@
+version: "3"
+services:
+  postgres:
+    container_name: posgre_container
+    image: posgre:1.0.0
+    build: ./docker/posgre
+    ports:
+      - 5432:5432
+    env_file:
+      - ./docker/posgre/.env
+    tty: true
+    restart: always
+    volumes:
+      - ./docker/posgre/init:/docker-entrypoint-initdb.d
+      - ./docker/posgre/posgre_data:/var/lib/postgresql/data
+
+  go:
+    container_name: golang_container
+    image: golang:1.0.0
+    build: ./docker/go
+    ports:
+      - 8080:8080
+    env_file:
+      - ./docker/go/.env
+    tty: true
+#    restart: always
+    volumes:
+      - ./app:/go/src/app
+      - ./docker/go/start.sh:/start.sh
+    command: sh /start.sh
+
+  pgweb:
+    image: sosedoff/pgweb
+    container_name: pgweb
+    ports:
+      - 8081:8081
+    env_file:
+      - ./docker/pgweb/.env
+    restart: always
+    depends_on:
+      - postgres
