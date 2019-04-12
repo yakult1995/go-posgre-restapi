@@ -1,6 +1,10 @@
 # go-posgre-restapi
 RESTfulAPI with Golang and Postgres
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/yakult1995/go-posgre-restapi/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/yakult1995/go-posgre-restapi/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/yakult1995/go-posgre-restapi/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/yakult1995/go-posgre-restapi/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/yakult1995/go-posgre-restapi/badges/build.png?b=master)](https://scrutinizer-ci.com/g/yakult1995/go-posgre-restapi/build-status/master)  
+
 ## How to use
 ### .env
 `cp docker/pgweb/.env.sample docker/pgweb/.env`  

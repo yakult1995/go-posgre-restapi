@@ -70,7 +70,7 @@ func ListUsers(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
 // ユーザ情報を更新する
 func UpdateUser(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
-	userId := p.ByName("id")
+	userID := p.ByName("id")
 
 	// パラメータを受け取る
 	var user User
@@ -82,7 +82,7 @@ func UpdateUser(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
 	// 情報の更新
 	sqlQuery, err := db.Prepare("UPDATE users SET name = $2, email = $3 WHERE id = $1 RETURNING *")
-	err = sqlQuery.QueryRow(userId, user.Name, user.Email).
+	err = sqlQuery.QueryRow(userID, user.Name, user.Email).
 		Scan(&user.ID, &user.Name, &user.Email, &user.CreatedAt, &user.UpdatedAt)
 	if err != nil {
 		// 対象ユーザがいないとき　
@@ -109,10 +109,10 @@ func UpdateUser(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
 // ユーザの情報を取得
 func DetailUser(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
-	userId := p.ByName("id")
+	userID := p.ByName("id")
 
 	var user User
-	row := db.QueryRow("SELECT * FROM users WHERE id = $1", userId)
+	row := db.QueryRow("SELECT * FROM users WHERE id = $1", userID)
 	err := row.Scan(&user.ID, &user.Name, &user.Email, &user.CreatedAt, &user.UpdatedAt)
 	if err != nil {
 		// 対象ユーザがいないとき
@@ -166,8 +166,8 @@ func CreateUser(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
 // ユーザ消去
 func DeleteUser(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
-	userId := p.ByName("id")
-	_ = db.QueryRow("DELETE FROM users WHERE id = $1", userId)
+	userID := p.ByName("id")
+	_ = db.QueryRow("DELETE FROM users WHERE id = $1", userID)
 
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusNoContent)
