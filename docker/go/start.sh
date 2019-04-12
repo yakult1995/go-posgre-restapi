@@ -9,6 +9,6 @@ done
 
 >&2 echo "Postgres is up - executing command"
 cd /go/src/app
-go get -d -v ./...
-go build main.go handler.go user.go
+go get
+go build -o main .
 go run main.go handler.go user.go
