@@ -3,7 +3,6 @@ os: linux
 files:
   - source: /
     destination: /home/ec2-user/go-posgre-restapi
-    overwrite: true
 
 hooks:
   BeforeInstall:
