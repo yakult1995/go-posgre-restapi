@@ -27,6 +27,9 @@ build:
 #          - govet-run
 #          - command: go test -v github.com/yakult1995/go-posgre-restapi
     coverage:
+      environment:
+        go:
+          version: go1.9.2
       tests:
         override:
           - command: go test -coverprofile=cover.out -v github.com/yakult1995/go-posgre-restapi
