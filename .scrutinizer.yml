@@ -26,14 +26,19 @@ build:
       tests:
         override:
           - command: go test -v $(go list ./... | grep -v vendor)
-#    coverage:
-#      environment:
-#        go:
-#          version: go1.9.2
-#      tests:
-#        override:
-#          - govet-run
-#          - command: go test -coverprofile=cover.out -v github.com/yakult1995/go-posgre-restapi
-#            coverage:
-#              file: 'cover.out'
-#              format: 'go-cc'
+    coverage:
+      project_setup:
+        before:
+          - "cd app"
+        override:
+          - 'true'
+      environment:
+        go:
+          version: go1.9.2
+      tests:
+        override:
+          - govet-run
+          - command: go test -coverprofile=cover.out -v $(go list ./... | grep -v vendor)
+            coverage:
+              file: 'cover.out'
+              format: 'go-cc'
