@@ -25,9 +25,7 @@ build:
           version: go1.9.2
       tests:
         override:
-          - go-scrutinizer-run
-          - govet-run
-          - command: go test -v github.com/yakult1995/go-posgre-restapi
+          - command: go test -v $(go list ./... | grep -v vendor)
 #    coverage:
 #      environment:
 #        go:
