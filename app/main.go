@@ -51,12 +51,13 @@ func InitDB(postgresHost, postgresPort, postgresUser, postgresPassword, postgres
 	}
 }
 
-func InitTimeZone(timeZone string) {
+func InitTimeZone(timeZone string) bool{
 	loc, err := time.LoadLocation(timeZone)
 	if err != nil {
 		panic(err)
 	}
 	time.Local = loc
+	return true
 }
 
 func mustGetenv(k string) string {
