@@ -6,7 +6,7 @@ files:
     overwrite: true
 
 hooks:
-  ApplicationStop:
+  BeforeInstall:
     - location: scripts/before_install.sh
       runas: ec2-user
   AfterInstall:
